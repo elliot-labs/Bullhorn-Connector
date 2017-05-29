@@ -36,20 +36,29 @@ class Authentication():
             print(self.rest_auth_data)
 
     def get_authcode(self, debug=False):
-        """Returns the value of the authentication code."""
+        """Returns the authcode.
+        If no auth code is found, returns False."""
         auth_code_request = requests.get(self.authcode_url, params=self.authcode_data)
         code = re.search('(?<=code=)[0-9%a-zA-Z-]+', auth_code_request.url)
         if debug:
             print(auth_code_request.url)
-        return unquote(code.group(0))
+        if code is None:
+            return False
+        else:
+            return unquote(code.group(0))
 
     def get_token_data(self, debug=False):
-        """Returns the value of the token."""
+        """Returns the value of the auth token.
+        If no token was found, returns false."""
         token_request = requests.post(self.token_url, params=self.token_url_data)
         token = re.search('(?<=\"access_token\" : \")[0-9]{2}:[0-9a-zA-Z-]+', token_request.text)
         if debug:
             print(token_request.url)
-        return token.group(0)
+            print(token_request.text)
+        if token is None:
+            return False
+        else:
+            return token.group(0)
 
     def get_rest_access(self, debug=False):
         """
@@ -95,6 +104,9 @@ class DataAccess:
 
 
 if __name__ == '__main__':
-    PRINTME = DataAccess()
-    print(PRINTME.get_command('entity/Department/0'))
+    #PRINTME = DataAccess()
+    #print(PRINTME.get_command('entity/Department/0'))
     # {'fields': '*'}
+    AUTHTEST = Authentication()
+    print(AUTHTEST.get_token_data(debug=True))
+    #print(AUTHTEST.get_authcode(debug=True))
