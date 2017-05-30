@@ -1,4 +1,5 @@
 import re
+import time
 import json
 from urllib.parse import unquote
 import requests
@@ -77,6 +78,8 @@ class Authentication():
 class DataAccess:
     """Returns the requested data."""
     def __init__(self):
+        """Sets the required variables for all methods."""
+
         self.authenticated_rest = Authentication()
         self.rest_access = self.authenticated_rest.get_rest_access()
 
@@ -102,11 +105,25 @@ class DataAccess:
 
         return result.text
 
+    def api_search(self, entity='JobOrder', fields='*', debug=False):
+        """Runs a search command on all entries in the database.
+        Returns the results of the search as JSON text."""
+
+        search_params = {
+            'BhRestToken': self.rest_access['BhRestToken'],
+            'query': 'dateAdded:[20140101 TO ' + time.strftime('%Y%m%d') + ']',
+            'fields': fields,
+            'count': "500"}
+
+        search_request = requests.get(self.rest_access['restUrl'] + 'search/' + entity,
+                                      params=search_params)
+
+        if debug:
+            print(search_params)
+            print(search_request.url)
+
+        return search_request.text
 
 if __name__ == '__main__':
-    #PRINTME = DataAccess()
-    #print(PRINTME.get_command('entity/Department/0'))
-    # {'fields': '*'}
-    AUTHTEST = Authentication()
-    print(AUTHTEST.get_token_data(debug=True))
-    #print(AUTHTEST.get_authcode(debug=True))
+    PRINTME = DataAccess()
+    print(PRINTME.api_search(fields='owner,clientCorporation,isOpen,title'))
