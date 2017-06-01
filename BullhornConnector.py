@@ -1,13 +1,15 @@
+import json
 import re
 import time
-import json
 from urllib.parse import unquote
+
 import requests
+
 
 # The requests library is available via the PIP installer using:
 # "python -m pip install requests"
 
-class Authentication():
+class Authentication:
     """Provides the authentication strings needed for queries."""
     def __init__(self, debug=False):
         """Sets the default settings for the authentication class"""
@@ -109,21 +111,45 @@ class DataAccess:
         """Runs a search command on all entries in the database.
         Returns the results of the search as JSON text."""
 
+        # Sets the default settings for the search queries
         search_params = {
             'BhRestToken': self.rest_access['BhRestToken'],
             'query': 'dateAdded:[20140101 TO ' + time.strftime('%Y%m%d') + ']',
             'fields': fields,
-            'count': "500"}
+            'count': 500,
+            'start': 0}
 
+        # The first query to the API using the default settings.
         search_request = requests.get(self.rest_access['restUrl'] + 'search/' + entity,
                                       params=search_params)
+        # The first query is now converted to a python dictionary.
+        original_search_request_parsed = json.loads(search_request.text)
+
+        # Settings are preset for the loop:
+        # Renamed the original search request, parsed to results for ease of interpretation.
+        # Set the setting for the end of the loop so that the loop will end properly.
+        results = original_search_request_parsed
+        loop_end = original_search_request_parsed["total"] - original_search_request_parsed["count"]
+
+        while search_params["start"] < loop_end:
+            search_params["start"] = search_params["start"] + search_params["count"]
+            looped_search_request = json.loads(requests.get(
+                self.rest_access['restUrl'] + 'search/' + entity, params=search_params).text)
+            results["data"] = results["data"] + looped_search_request["data"]
+
+        results.pop("start")
+        results.pop("count")
 
         if debug:
             print(search_params)
             print(search_request.url)
+            print(original_search_request_parsed["count"])
+            print(original_search_request_parsed["total"])
+            #print(search_request_parsed["data"])
 
-        return search_request.text
+        return json.dumps(results)
 
 if __name__ == '__main__':
     PRINTME = DataAccess()
-    print(PRINTME.api_search(fields='owner,clientCorporation,isOpen,title'))
+    #print(PRINTME.api_search(fields='owner,clientCorporation,isOpen,title,submissions[0]'))
+    print(PRINTME.api_search(entity='JobSubmission', fields='candidate'))
