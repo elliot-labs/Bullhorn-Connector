@@ -168,15 +168,15 @@ class DataAccess:
                 self.rest_access['restUrl'] + 'search/' + entity, params=search_params).text)
             results["data"] = results["data"] + looped_search_request["data"]
 
-        results.pop("start")
-        results.pop("count")
-
         if self.debug:
             print(search_params)
             print(search_request.url)
             print(original_search_request_parsed["count"])
             print(original_search_request_parsed["total"])
             #print(search_request_parsed["data"])
+
+        results.pop("start")
+        results.pop("count")
 
         return json.dumps(results)
 
