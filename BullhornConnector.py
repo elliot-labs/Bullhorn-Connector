@@ -36,10 +36,10 @@ def cli_args():
 class Authentication:
     """Provides the authentication strings needed for queries."""
 
-    debug = False
-
-    def __init__(self):
+    def __init__(self, debug=False):
         """Sets the default settings for the authentication class"""
+
+        self.debug = debug
         self.authcode_url = 'https://auth.bullhornstaffing.com/oauth/authorize'
         self.authcode_data = {
             'client_id': '***REMOVED***',
@@ -107,13 +107,11 @@ class Authentication:
 class DataAccess:
     """Returns the requested data."""
 
-    debug = False
-
-    def __init__(self):
+    def __init__(self, debug=False):
         """Sets the required variables for all methods."""
 
-        self.authenticated_rest = Authentication()
-        self.authenticated_rest.debug = self.debug
+        self.authenticated_rest = Authentication(debug)
+        self.debug = debug
         self.rest_access = self.authenticated_rest.get_rest_access()
 
     def get_command(self, urlpath, command_options=None):
@@ -182,8 +180,7 @@ class DataAccess:
 
 if __name__ == '__main__':
     COMMAND_LINE_ARGUMENTS = cli_args()
-    PRINTME = DataAccess()
-    PRINTME.debug = COMMAND_LINE_ARGUMENTS.debug
+    PRINTME = DataAccess(COMMAND_LINE_ARGUMENTS.debug)
     #fields='owner,clientCorporation,isOpen,title,submissions[0]'
     print(PRINTME.api_search(entity=COMMAND_LINE_ARGUMENTS.entity,
                              fields=COMMAND_LINE_ARGUMENTS.fields))
