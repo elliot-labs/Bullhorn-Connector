@@ -185,5 +185,5 @@ if __name__ == '__main__':
     PRINTME = DataAccess()
     PRINTME.debug = COMMAND_LINE_ARGUMENTS.debug
     #fields='owner,clientCorporation,isOpen,title,submissions[0]'
-    print(PRINTME.api_search(entity='COMMAND_LINE_ARGUMENTS.entity',
-                             fields='COMMAND_LINE_ARGUMENTS.fields'))
+    print(PRINTME.api_search(entity=COMMAND_LINE_ARGUMENTS.entity,
+                             fields=COMMAND_LINE_ARGUMENTS.fields))
