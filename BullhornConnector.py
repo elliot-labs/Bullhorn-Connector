@@ -50,31 +50,21 @@ class Authentication:
             'username': '***REMOVED***',
             'password': '***REMOVED***',
             'action': 'Login'}
-        self.token_url = 'https://auth.bullhornstaffing.com/oauth/token'
-        self.token_url_data = {
-            'grant_type': 'authorization_code',
-            'code': self.get_authcode(),
-            'client_id': self.authcode_data['client_id'],
-            'client_secret': '***REMOVED***'}
-        self.rest_auth_url = 'https://rest.bullhornstaffing.com/rest-services/login'
-        self.rest_auth_data = {
-            'version': '*',
-            'access_token': self.get_token_data()}
+
         if self.debug:
             print(self.authcode_url)
             print(self.authcode_data)
-            print(self.token_url)
-            print(self.token_url_data)
-            print(self.rest_auth_url)
-            print(self.rest_auth_data)
 
     def get_authcode(self):
         """Returns the authcode.
         If no auth code is found, returns False."""
+
         auth_code_request = requests.get(self.authcode_url, params=self.authcode_data)
         code = re.search('(?<=code=)[0-9%a-zA-Z-]+', auth_code_request.url)
+
         if self.debug:
             print(auth_code_request.url)
+
         if code is None:
             return False
         else:
@@ -83,15 +73,27 @@ class Authentication:
     def get_token_data(self):
         """Returns the value of the auth token.
         If no token was found, returns false."""
-        token_request = requests.post(self.token_url, params=self.token_url_data)
-        token = re.search('(?<=\"access_token\" : \")[0-9]{2}:[0-9a-zA-Z-]+', token_request.text)
+
+        # Set the default values for the token data request.
+        token_url = 'https://auth.bullhornstaffing.com/oauth/token'
+        token_url_data = {
+            'grant_type': 'authorization_code',
+            'code': self.get_authcode(),
+            'client_id': self.authcode_data['client_id'],
+            'client_secret': '***REMOVED***'}
+
+        token_request = requests.post(token_url, params=token_url_data)
+        token = json.loads(token_request.text)
         if self.debug:
+            print(token_url)
+            print(token_url_data)
             print(token_request.url)
             print(token_request.text)
-        if token is None:
-            return False
+        if "access_token" in token:
+            return token["access_token"]
         else:
-            return token.group(0)
+            return False
+
 
     def get_rest_access(self):
         """
@@ -99,9 +101,18 @@ class Authentication:
         The 'BhRestToken' index returns the rest API token.
         The 'restUrl' index returns the URL to access the restAPI.
         """
-        rest_access_response = requests.get(self.rest_auth_url, params=self.rest_auth_data)
+
+        # Sets the default settings for rest access authorization.
+        rest_auth_url = 'https://rest.bullhornstaffing.com/rest-services/login'
+        rest_auth_data = {
+            'version': '*',
+            'access_token': self.get_token_data()}
+
+        rest_access_response = requests.get(rest_auth_url, params=rest_auth_data)
         rest_access = json.loads(rest_access_response.text)
         if self.debug:
+            print(rest_auth_url)
+            print(rest_auth_data)
             print(rest_access_response.url)
             print(rest_access)
         return rest_access
