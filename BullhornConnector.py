@@ -27,6 +27,8 @@ def cli_args():
                         "Data should be a comma separated value " +
                         "with no space on either side of the comma. " +
                         "E.G. 'foo,bar,baz'.")
+    # Add the meta data flag argument.
+    parser.add_argument("-m", "--meta", help="Enable meta data output", action="store_true")
     # Add the debug flag argument.
     parser.add_argument("-d", "--debug", help="Enable debugging output", action="store_true")
     # Process the arguments and make accessible
@@ -107,12 +109,13 @@ class Authentication:
 class DataAccess:
     """Returns the requested data."""
 
-    def __init__(self, debug=False):
+    def __init__(self, debug=False, meta=False):
         """Sets the required variables for all methods."""
 
         self.authenticated_rest = Authentication(debug)
         self.debug = debug
         self.rest_access = self.authenticated_rest.get_rest_access()
+        self.meta_flag = meta
 
     def get_command(self, urlpath, command_options=None):
         """A method that allows for dynamic get commands.\n
@@ -167,23 +170,26 @@ class DataAccess:
             results["data"] = results["data"] + looped_search_request["data"]
 
         if self.debug:
+            jsonindent = 3
             print(search_params)
             print(search_request.url)
             print(original_search_request_parsed["count"])
             print(original_search_request_parsed["total"])
             #print(search_request_parsed["data"])
+        else:
+            jsonindent = None
 
         results.pop("start")
         results.pop("count")
 
-        if self.debug:
-            return json.dumps(results, indent=3)
+        if self.meta_flag:
+            return json.dumps(results, indent=jsonindent)
         else:
-            return json.dumps(results)
+            return json.dumps(results["data"], indent=jsonindent)
 
 if __name__ == '__main__':
     COMMAND_LINE_ARGUMENTS = cli_args()
-    PRINTME = DataAccess(COMMAND_LINE_ARGUMENTS.debug)
+    PRINTME = DataAccess(COMMAND_LINE_ARGUMENTS.debug, COMMAND_LINE_ARGUMENTS.meta)
     #fields='owner,clientCorporation,isOpen,title,submissions[0]'
     print(PRINTME.api_search(entity=COMMAND_LINE_ARGUMENTS.entity,
                              fields=COMMAND_LINE_ARGUMENTS.fields))
