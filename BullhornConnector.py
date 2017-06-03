@@ -28,7 +28,8 @@ def cli_args():
                         "with no space on either side of the comma. " +
                         "E.G. 'foo,bar,baz'.")
     # Add the meta data flag argument.
-    parser.add_argument("-m", "--meta", help="Enable meta data output", action="store_true")
+    parser.add_argument("-m", "--meta", help="Enable meta data output. " +
+                        "This is not ELK stack friendly.", action="store_true")
     # Add the debug flag argument.
     parser.add_argument("-d", "--debug", help="Enable debugging output", action="store_true")
     # Process the arguments and make accessible
