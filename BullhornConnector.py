@@ -176,7 +176,10 @@ class DataAccess:
         results.pop("start")
         results.pop("count")
 
-        return json.dumps(results)
+        if self.debug:
+            return json.dumps(results, indent=3)
+        else:
+            return json.dumps(results)
 
 if __name__ == '__main__':
     COMMAND_LINE_ARGUMENTS = cli_args()
