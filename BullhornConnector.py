@@ -125,6 +125,7 @@ class Authentication:
             token_request = requests.post(token_url, params=token_url_data)
             token = json.loads(token_request.text)
             token_data_file = open("token_data.json", 'w')
+            token["time_expires"] = int(time.time()) + token["expires_in"]
             token_data_file.write(json.dumps(token, indent=3))
             token_data_file.close()
 
@@ -136,7 +137,7 @@ class Authentication:
                 print(token_request.url)
                 print(token_request.text)
                 if need_cache_update:
-                    print("Creating Cache from scratch.")
+                    print("Created Token Cache from scratch.")
                 if use_refresh_token:
                     print("Using refresh token.")
 
@@ -154,23 +155,50 @@ class Authentication:
         The 'restUrl' index returns the URL to access the restAPI.
         """
 
-        # Sets the default settings for rest access authorization.
-        rest_auth_url = 'https://rest.bullhornstaffing.com/rest-services/login'
-        rest_auth_data = {
-            'version': '*',
-            'access_token': self.get_token_data()}
+        if os.path.isfile("token_data.json") and os.path.isfile("rest_access.json"):
 
-        rest_access_response = requests.get(rest_auth_url, params=rest_auth_data)
-        rest_access = json.loads(rest_access_response.text)
+            rest_data_file = open("rest_access.json", 'r')
+            rest_cache = json.loads(rest_data_file.read())
+            rest_data_file.close()
+
+            token_data_file = open("token_data.json", 'r')
+            token_cache = json.loads(token_data_file.read())
+            token_data_file.close()
+
+            if "error" in token_cache or "error" in rest_cache:
+                need_cache_update = True
+            else:
+                if token_cache["time_expires"] > int(time.time()):
+                    need_cache_update = False
+                else:
+                    need_cache_update = True
+        else:
+            need_cache_update = True
+
+        # Sets the default settings for rest access authorization.
+        if need_cache_update:
+            rest_auth_url = 'https://rest.bullhornstaffing.com/rest-services/login'
+            rest_auth_data = {
+                'version': '*',
+                'access_token': self.get_token_data()}
+            rest_access_response = requests.get(rest_auth_url, params=rest_auth_data)
+            rest_access = json.loads(rest_access_response.text)
+            rest_data_file = open("rest_access.json", 'w')
+            rest_data_file.write(rest_access_response.text)
+            rest_data_file.close()
 
         if self.debug:
-            print(rest_auth_url)
-            print(rest_auth_data)
-            print(rest_access_response.url)
-            print(rest_access)
+            if need_cache_update:
+                print(rest_auth_url)
+                print(rest_auth_data)
+                print(rest_access_response.url)
+                print(rest_access)
+                print("Created REST Cache from scratch.")
 
-        return rest_access
-
+        if not need_cache_update:
+            return rest_cache
+        else:
+            return rest_access
 
 class DataAccess:
     """Returns the requested data."""
