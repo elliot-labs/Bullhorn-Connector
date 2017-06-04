@@ -44,26 +44,34 @@ class Authentication:
         """Sets the default settings for the authentication class"""
 
         self.debug = debug
-        self.authcode_url = 'https://auth.bullhornstaffing.com/oauth/authorize'
-        self.authcode_data = {
+        self.credentials = {
             'client_id': '***REMOVED***',
-            'response_type': 'code',
+            'client_secret': '***REMOVED***',
             'username': '***REMOVED***',
-            'password': '***REMOVED***',
-            'action': 'Login'}
+            'password': '***REMOVED***'}
 
         if self.debug:
-            print(self.authcode_url)
-            print(self.authcode_data)
+            print(self.credentials)
 
     def get_authcode(self):
         """Returns the authcode.
         If no auth code is found, returns False."""
 
-        auth_code_request = requests.get(self.authcode_url, params=self.authcode_data)
+        # Sets the default settings for the auth code retrieval system.
+        authcode_url = 'https://auth.bullhornstaffing.com/oauth/authorize'
+        authcode_data = {
+            'client_id': self.credentials["client_id"],
+            'response_type': 'code',
+            'username': self.credentials["username"],
+            'password': self.credentials["password"],
+            'action': 'Login'}
+
+        auth_code_request = requests.get(authcode_url, params=authcode_data)
         code = re.search('(?<=code=)[0-9%a-zA-Z-]+', auth_code_request.url)
 
         if self.debug:
+            print(authcode_url)
+            print(authcode_data)
             print(auth_code_request.url)
 
         if code is None:
@@ -76,52 +84,68 @@ class Authentication:
         If no token was found, returns false."""
 
         # By default a cache file does not need to be created.
-        need_cache_created = False
+        need_cache_update = False
 
         # Checks for the existence of the cache file.
+        # If file does not exit then it sets teh settings to have one created.
         if os.path.isfile("token_data.json"):
             token_data_file = open("token_data.json", 'r')
             token_cache = json.loads(token_data_file.read())
             token_data_file.close()
+            if "error" in token_cache:
+                need_cache_update = True
+            else:
+                need_cache_update = False
+                use_refresh_token = True
         else:
-            need_cache_created = True
+            need_cache_update = True
+            use_refresh_token = False
 
         # Set the default values for the token data request.
         token_url = 'https://auth.bullhornstaffing.com/oauth/token'
-        if need_cache_created:
+
+        # Creates the cache file from scratch
+        if need_cache_update:
             token_url_data = {
                 'grant_type': 'authorization_code',
                 'code': self.get_authcode(),
-                'client_id': self.authcode_data['client_id'],
-                'client_secret': '***REMOVED***'}
-        else:
+                'client_id': self.credentials["client_id"],
+                'client_secret': self.credentials["client_secret"]}
+
+        # If a refresh token can be used then this sets the settings for that.
+        elif use_refresh_token:
             token_url_data = {
                 'grant_type': 'refresh_token',
                 'refresh_token': token_cache["refresh_token"],
-                'client_id': self.authcode_data['client_id'],
-                'client_secret': '***REMOVED***'
-            }
-
-        token_request = requests.post(token_url, params=token_url_data)
-        token = json.loads(token_request.text)
+                'client_id': self.credentials["client_id"],
+                'client_secret': self.credentials["client_secret"]}
 
         # If there is no cache file then it creates one with the required data.
-        if need_cache_created:
+        if need_cache_update or use_refresh_token:
+            token_request = requests.post(token_url, params=token_url_data)
+            token = json.loads(token_request.text)
             token_data_file = open("token_data.json", 'w')
             token_data_file.write(json.dumps(token, indent=3))
             token_data_file.close()
 
+        # Displays useful information for debugging if debugging is enabled.
         if self.debug:
-            print(token_url)
-            print(token_url_data)
-            print(token_request.url)
-            print(token_request.text)
+            if need_cache_update or use_refresh_token:
+                print(token_url)
+                print(token_url_data)
+                print(token_request.url)
+                print(token_request.text)
+                if need_cache_update:
+                    print("Creating Cache from scratch.")
+                if use_refresh_token:
+                    print("Using refresh token.")
 
+        # Returns the Access Token.
+        # If the access token is not present then returns False.
         if "access_token" in token:
             return token["access_token"]
         else:
             return False
-
 
     def get_rest_access(self):
         """
@@ -138,11 +162,13 @@ class Authentication:
 
         rest_access_response = requests.get(rest_auth_url, params=rest_auth_data)
         rest_access = json.loads(rest_access_response.text)
+
         if self.debug:
             print(rest_auth_url)
             print(rest_auth_data)
             print(rest_access_response.url)
             print(rest_access)
+
         return rest_access
 
 
@@ -228,10 +254,8 @@ class DataAccess:
             return json.dumps(results["data"], indent=jsonindent)
 
 if __name__ == '__main__':
-    # COMMAND_LINE_ARGUMENTS = cli_args()
-    # PRINTME = DataAccess(COMMAND_LINE_ARGUMENTS.debug, COMMAND_LINE_ARGUMENTS.meta)
+    COMMAND_LINE_ARGUMENTS = cli_args()
+    PRINTME = DataAccess(COMMAND_LINE_ARGUMENTS.debug, COMMAND_LINE_ARGUMENTS.meta)
     #fields='owner,clientCorporation,isOpen,title,submissions[0]'
-    # print(PRINTME.api_search(entity=COMMAND_LINE_ARGUMENTS.entity,
-    #                          fields=COMMAND_LINE_ARGUMENTS.fields))
-    PRINTME = Authentication(True)
-    print(PRINTME.get_token_data())
+    print(PRINTME.api_search(entity=COMMAND_LINE_ARGUMENTS.entity,
+                             fields=COMMAND_LINE_ARGUMENTS.fields))
