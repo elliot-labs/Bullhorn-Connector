@@ -258,7 +258,8 @@ class DataAccess:
         loop_end = original_search_request_parsed["total"] - original_search_request_parsed["count"]
 
         while search_params["start"] < loop_end:
-            search_params["start"] = search_params["start"] + search_params["count"]
+            search_params["start"] = search_params["start"] \
+            + original_search_request_parsed["count"]
             looped_search_request = json.loads(requests.get(
                 self.rest_access['restUrl'] + 'search/' + entity, params=search_params).text)
             results["data"] = results["data"] + looped_search_request["data"]
