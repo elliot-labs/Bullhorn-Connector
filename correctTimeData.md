@@ -1,6 +1,7 @@
 # Use this config in the dev section of kibana for correcting the data types for the date fields returned by bnulhorn.
 
-```PUT my_index 
+```
+PUT my_index 
 {
   "mappings": {
     "user": { 
@@ -26,4 +27,5 @@
       }
     }
   }
-}```
+}
+```
