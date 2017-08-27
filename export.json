@@ -1,0 +1,421 @@
+[
+  {
+    "_id": "3a51e0c0-5936-11e7-9ae5-b7aa13f10cd5",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Main Dashboard",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"e6738a80-5935-11e7-9ae5-b7aa13f10cd5\",\"panelIndex\":1,\"row\":4,\"size_x\":12,\"size_y\":5,\"type\":\"visualization\"},{\"col\":7,\"id\":\"69a9d2a0-5937-11e7-9ae5-b7aa13f10cd5\",\"panelIndex\":2,\"row\":1,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"38f15f00-5939-11e7-9ae5-b7aa13f10cd5\",\"panelIndex\":3,\"row\":1,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":4,\"id\":\"65984b90-6096-11e7-be5b-35d73e4701be\",\"panelIndex\":4,\"row\":1,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-2\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":0,\"direction\":\"asc\"}}}},\"P-4\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-3\":{\"vis\":{\"defaultColors\":{\"0 - 100\":\"rgb(0,104,55)\"}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-1m",
+      "refreshInterval": {
+        "display": "5 seconds",
+        "pause": false,
+        "section": 1,
+        "value": 5000
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "9f6693a0-6941-11e7-a536-73ef3ba24ba6",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Opportunities",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":7,\"id\":\"be04c080-7552-11e7-ae79-a7a7db556d37\",\"panelIndex\":1,\"row\":4,\"size_x\":6,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"833a2250-7553-11e7-ae79-a7a7db556d37\",\"panelIndex\":2,\"row\":1,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"f81090a0-7553-11e7-ae79-a7a7db556d37\",\"panelIndex\":3,\"row\":1,\"size_x\":6,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"20971320-86af-11e7-af0d-e916f5714c5a\",\"panelIndex\":4,\"row\":5,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-1\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-3\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-4\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-5m",
+      "refreshInterval": {
+        "display": "1 minute",
+        "pause": false,
+        "section": 2,
+        "value": 60000
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":\"Not deleted\",\"disabled\":false,\"index\":\"logstash-*\",\"key\":\"isDeleted\",\"negate\":false,\"params\":[\"false\"],\"type\":\"phrases\",\"value\":\"false\"},\"query\":{\"bool\":{\"minimum_should_match\":1,\"should\":[{\"match_phrase\":{\"isDeleted\":\"false\"}}]}}},{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"index\":\"logstash-*\",\"key\":\"status.keyword\",\"negate\":false,\"type\":\"phrase\",\"value\":\"Back to Lead\"},\"query\":{\"match\":{\"status.keyword\":{\"query\":\"Back to Lead\",\"type\":\"phrase\"}}}},{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "897eaaa0-6941-11e7-a536-73ef3ba24ba6",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Leads",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"fda12450-754c-11e7-ae79-a7a7db556d37\",\"panelIndex\":1,\"row\":1,\"size_x\":6,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"209b8a20-754f-11e7-ae79-a7a7db556d37\",\"panelIndex\":2,\"row\":5,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"5904a6c0-7550-11e7-ae79-a7a7db556d37\",\"panelIndex\":3,\"row\":1,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"99aa11f0-7551-11e7-ae79-a7a7db556d37\",\"panelIndex\":4,\"row\":8,\"size_x\":6,\"size_y\":2,\"type\":\"visualization\"},{\"size_x\":6,\"size_y\":4,\"panelIndex\":5,\"type\":\"visualization\",\"id\":\"e19ca630-7551-11e7-ae79-a7a7db556d37\",\"col\":7,\"row\":4}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-1\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":3,\"direction\":\"desc\"}}}},\"P-2\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-3\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-4\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-5\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-5m",
+      "refreshInterval": {
+        "display": "1 minute",
+        "pause": false,
+        "section": 2,
+        "value": 60000
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "083dfad0-6096-11e7-be5b-35d73e4701be",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Job Breakdown",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"e867f490-6095-11e7-be5b-35d73e4701be\",\"panelIndex\":1,\"row\":4,\"size_x\":12,\"size_y\":6,\"type\":\"visualization\"},{\"col\":8,\"id\":\"db837ab0-6095-11e7-be5b-35d73e4701be\",\"panelIndex\":2,\"row\":1,\"size_x\":5,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"65984b90-6096-11e7-be5b-35d73e4701be\",\"panelIndex\":3,\"row\":1,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"size_x\":4,\"size_y\":3,\"panelIndex\":4,\"type\":\"visualization\",\"id\":\"af33d0b0-609d-11e7-b495-f96ae1f78cdc\",\"col\":4,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-1\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-2\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-3\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-4\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-5m",
+      "refreshInterval": {
+        "display": "1 minute",
+        "pause": false,
+        "section": 2,
+        "value": 60000
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "44657ad0-609e-11e7-b495-f96ae1f78cdc",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Fun dashboard",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":9,\"id\":\"9f848190-609e-11e7-b495-f96ae1f78cdc\",\"panelIndex\":1,\"row\":1,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"c90f4590-609e-11e7-b495-f96ae1f78cdc\",\"panelIndex\":2,\"row\":1,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"3718fae0-609f-11e7-b495-f96ae1f78cdc\",\"panelIndex\":3,\"row\":4,\"size_x\":12,\"size_y\":5,\"type\":\"visualization\"},{\"col\":4,\"id\":\"9fd90d60-60a2-11e7-b495-f96ae1f78cdc\",\"panelIndex\":4,\"row\":1,\"size_x\":5,\"size_y\":3,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-5m",
+      "refreshInterval": {
+        "display": "1 minute",
+        "pause": false,
+        "section": 2,
+        "value": 60000
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "65984b90-6096-11e7-be5b-35d73e4701be",
+    "_type": "visualization",
+    "_source": {
+      "title": "Open/closed toggle",
+      "visState": "{\"title\":\"Open/closed toggle\",\"type\":\"table\",\"params\":{\"perPage\":2,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":true,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Total Jobs\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"isOpen\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Is the Job Open?\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Job Orders\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"JobOrder\"},\"query\":{\"match\":{\"tags\":{\"query\":\"JobOrder\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "af33d0b0-609d-11e7-b495-f96ae1f78cdc",
+    "_type": "visualization",
+    "_source": {
+      "title": "Company Selector",
+      "visState": "{\"title\":\"Company Selector\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"clientCorporation.name.keyword\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Company Name\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Job Orders\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"JobOrder\"},\"query\":{\"match\":{\"tags\":{\"query\":\"JobOrder\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "9fd90d60-60a2-11e7-b495-f96ae1f78cdc",
+    "_type": "visualization",
+    "_source": {
+      "title": "Barchart recreation",
+      "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"4\",\"params\":{\"customLabel\":\"Web Responses\",\"field\":\"webResponses.total\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Submissions\",\"field\":\"submissions.total\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"6\",\"params\":{\"customLabel\":\"Client Submissions\",\"field\":\"sendouts.total\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"7\",\"params\":{\"customLabel\":\"Client Interviews\",\"field\":\"interviews.total\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"5\",\"params\":{\"customLabel\":\"Placements\",\"field\":\"placements.total\"},\"schema\":\"metric\",\"type\":\"sum\"}],\"listeners\":{},\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"labels\":{\"rotate\":0,\"show\":true,\"truncate\":100},\"position\":\"bottom\",\"scale\":{\"type\":\"linear\"},\"show\":false,\"style\":{},\"title\":{\"text\":\"\"},\"type\":\"category\"}],\"defaultYExtents\":false,\"drawLinesBetweenPoints\":true,\"grid\":{\"categoryLines\":false,\"style\":{\"color\":\"#eee\"},\"valueAxis\":\"ValueAxis-1\"},\"interpolate\":\"linear\",\"legendPosition\":\"bottom\",\"orderBucketsBySum\":false,\"radiusRatio\":9,\"scale\":\"linear\",\"seriesParams\":[{\"data\":{\"id\":\"4\",\"label\":\"Web Responses\"},\"drawLinesBetweenPoints\":true,\"interpolate\":\"linear\",\"lineWidth\":2,\"mode\":\"normal\",\"show\":true,\"showCircles\":true,\"type\":\"histogram\",\"valueAxis\":\"ValueAxis-1\"},{\"data\":{\"id\":\"3\",\"label\":\"Submissions\"},\"drawLinesBetweenPoints\":true,\"interpolate\":\"linear\",\"lineWidth\":2,\"mode\":\"normal\",\"show\":true,\"showCircles\":true,\"type\":\"histogram\",\"valueAxis\":\"ValueAxis-1\"},{\"data\":{\"id\":\"6\",\"label\":\"Client Submissions\"},\"drawLinesBetweenPoints\":true,\"interpolate\":\"linear\",\"lineWidth\":2,\"mode\":\"normal\",\"show\":true,\"showCircles\":true,\"type\":\"histogram\",\"valueAxis\":\"ValueAxis-1\"},{\"data\":{\"id\":\"7\",\"label\":\"Client Interviews\"},\"drawLinesBetweenPoints\":true,\"interpolate\":\"linear\",\"lineWidth\":2,\"mode\":\"normal\",\"show\":true,\"showCircles\":true,\"type\":\"histogram\",\"valueAxis\":\"ValueAxis-1\"},{\"data\":{\"id\":\"5\",\"label\":\"Placements\"},\"drawLinesBetweenPoints\":true,\"interpolate\":\"linear\",\"lineWidth\":2,\"mode\":\"normal\",\"show\":true,\"showCircles\":true,\"type\":\"histogram\",\"valueAxis\":\"ValueAxis-1\"}],\"setYExtents\":false,\"showCircles\":true,\"times\":[],\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"labels\":{\"filter\":false,\"rotate\":0,\"show\":true,\"truncate\":100},\"name\":\"LeftAxis-1\",\"position\":\"left\",\"scale\":{\"mode\":\"normal\",\"type\":\"linear\"},\"show\":true,\"style\":{},\"title\":{\"text\":\"\"},\"type\":\"value\"}]},\"title\":\"Barchart recreation\",\"type\":\"histogram\"}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"isOpen:true\"}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Job Orders\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"JobOrder\"},\"query\":{\"match\":{\"tags\":{\"query\":\"JobOrder\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "69a9d2a0-5937-11e7-9ae5-b7aa13f10cd5",
+    "_type": "visualization",
+    "_source": {
+      "title": "Overview Grid",
+      "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Owner First Name\",\"field\":\"owner.firstName.keyword\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":999999999},\"schema\":\"bucket\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Last Name\",\"field\":\"owner.lastName.keyword\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":999999999},\"schema\":\"bucket\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"Open Jobs\"},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"5\",\"params\":{\"customLabel\":\"Number of openings\",\"field\":\"numOpenings\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"8\",\"params\":{\"customLabel\":\"Web Responses\",\"field\":\"webResponses.total\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"9\",\"params\":{\"customLabel\":\"Submissions\",\"field\":\"submissions.total\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"6\",\"params\":{\"customLabel\":\"Client Submissions\",\"field\":\"sendouts.total\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"4\",\"params\":{\"customLabel\":\"Interviews\",\"field\":\"interviews.total\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"7\",\"params\":{\"customLabel\":\"Placements\",\"field\":\"placements.total\"},\"schema\":\"metric\",\"type\":\"sum\"}],\"listeners\":{},\"params\":{\"perPage\":10,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"title\":\"Overview Grid\",\"type\":\"table\"}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":0,\"direction\":\"asc\"}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Job Orders\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"JobOrder\"},\"query\":{\"match\":{\"tags\":{\"query\":\"JobOrder\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "3718fae0-609f-11e7-b495-f96ae1f78cdc",
+    "_type": "visualization",
+    "_source": {
+      "title": "Fun Bar",
+      "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"field\":\"clientCorporation.name.keyword\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":999999999},\"schema\":\"segment\",\"type\":\"terms\"}],\"listeners\":{},\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"labels\":{\"show\":true,\"truncate\":100},\"position\":\"bottom\",\"scale\":{\"type\":\"linear\"},\"show\":true,\"style\":{},\"title\":{\"text\":\"clientCorporation.name.keyword: Descending\"},\"type\":\"category\"}],\"defaultYExtents\":false,\"drawLinesBetweenPoints\":true,\"grid\":{\"categoryLines\":false,\"style\":{\"color\":\"#eee\"}},\"interpolate\":\"linear\",\"legendPosition\":\"right\",\"radiusRatio\":9,\"scale\":\"linear\",\"seriesParams\":[{\"data\":{\"id\":\"1\",\"label\":\"Count\"},\"drawLinesBetweenPoints\":true,\"mode\":\"stacked\",\"show\":\"true\",\"showCircles\":true,\"type\":\"histogram\",\"valueAxis\":\"ValueAxis-1\"}],\"setYExtents\":false,\"showCircles\":true,\"times\":[],\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"labels\":{\"filter\":false,\"rotate\":0,\"show\":true,\"truncate\":100},\"name\":\"LeftAxis-1\",\"position\":\"left\",\"scale\":{\"mode\":\"normal\",\"type\":\"linear\"},\"show\":true,\"style\":{},\"title\":{},\"type\":\"value\"}]},\"title\":\"Fun Bar\",\"type\":\"histogram\"}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Job Orders\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"JobOrder\"},\"query\":{\"match\":{\"tags\":{\"query\":\"JobOrder\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "38f15f00-5939-11e7-9ae5-b7aa13f10cd5",
+    "_type": "visualization",
+    "_source": {
+      "title": "Total Jobs",
+      "visState": "{\"title\":\"Total Jobs\",\"type\":\"metric\",\"params\":{\"addLegend\":false,\"addTooltip\":true,\"fontSize\":\"120\",\"gauge\":{\"autoExtend\":false,\"backStyle\":\"Full\",\"colorSchema\":\"Green to Red\",\"colorsRange\":[{\"from\":0,\"to\":100}],\"gaugeColorMode\":\"None\",\"gaugeStyle\":\"Full\",\"gaugeType\":\"Metric\",\"invertColors\":false,\"labels\":{\"color\":\"black\",\"show\":true},\"orientation\":\"vertical\",\"percentageMode\":false,\"scale\":{\"color\":\"#333\",\"labels\":false,\"show\":false,\"width\":2},\"style\":{\"bgColor\":false,\"bgFill\":\"#000\",\"fontSize\":60,\"labelColor\":false,\"subText\":\"\"},\"type\":\"simple\",\"useRange\":false,\"verticalSplit\":false},\"handleNoResults\":true,\"type\":\"gauge\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Jobs\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"0 - 100\":\"rgb(0,104,55)\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Job Orders\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"JobOrder\"},\"query\":{\"match\":{\"tags\":{\"query\":\"JobOrder\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "664960e0-694e-11e7-a536-73ef3ba24ba6",
+    "_type": "visualization",
+    "_source": {
+      "title": "Lead - Status and Age",
+      "visState": "{\"title\":\"Lead - Status and Age\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Ignore this\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"firstName.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"First Name\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"lastName.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Last Name\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"status.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Status\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"tags:Lead\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "be04c080-7552-11e7-ae79-a7a7db556d37",
+    "_type": "visualization",
+    "_source": {
+      "title": "Opportunities By Owner",
+      "visState": "{\"title\":\"Opportunities By Owner\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Number\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"owner.firstName.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Owner First Name\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"owner.lastName.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Last Name\"}},{\"id\":\"5\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"dealValue\",\"customLabel\":\"Deal Value\"}},{\"id\":\"6\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"weightedDealValue\",\"customLabel\":\"Weighted Deal Value\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Opportunities\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"Opportunity\"},\"query\":{\"match\":{\"tags\":{\"query\":\"Opportunity\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "5904a6c0-7550-11e7-ae79-a7a7db556d37",
+    "_type": "visualization",
+    "_source": {
+      "title": "Leads By Age",
+      "visState": "{\"title\":\"Leads By Age\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Total\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_range\",\"schema\":\"bucket\",\"params\":{\"field\":\"dateAddedCorrected\",\"ranges\":[{\"from\":\"now-15d/d\",\"to\":\"now\"},{\"from\":\"now-30d/d\",\"to\":\"now-16d/d\"},{\"from\":\"now-45d/d\",\"to\":\"now-31d/d\"},{\"from\":\"now-60d/d\",\"to\":\"now-46d/d\"},{\"from\":\"now-90d/d\",\"to\":\"now-61d/d\"},{\"from\":\"2014-01-01\",\"to\":\"now-91d/d\"}],\"customLabel\":\"Age Range\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"Lead\"},\"query\":{\"match\":{\"tags\":{\"query\":\"Lead\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "99aa11f0-7551-11e7-ae79-a7a7db556d37",
+    "_type": "visualization",
+    "_source": {
+      "title": "Leads by Owner",
+      "visState": "{\"title\":\"Leads by Owner\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Number\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"owner.firstName.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Owner First Name\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"owner.lastName.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Owner Last Name\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":null,\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"Lead\"},\"query\":{\"match\":{\"tags\":{\"query\":\"Lead\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "fda12450-754c-11e7-ae79-a7a7db556d37",
+    "_type": "visualization",
+    "_source": {
+      "title": "Leads over time",
+      "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"First Name\",\"field\":\"firstName.keyword\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":10},\"schema\":\"bucket\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Last Name\",\"field\":\"lastName.keyword\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":10},\"schema\":\"bucket\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"4\",\"params\":{\"customLabel\":\"Status\",\"field\":\"status.keyword\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":10},\"schema\":\"bucket\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"5\",\"params\":{\"customLabel\":\"Age\",\"field\":\"dateAddedCorrected\",\"order\":\"desc\",\"orderBy\":\"_term\",\"size\":10},\"schema\":\"bucket\",\"type\":\"terms\"}],\"listeners\":{},\"params\":{\"perPage\":10,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"title\":\"Leads over time\",\"type\":\"table\"}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":3,\"direction\":\"desc\"}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"tags:Lead\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "e19ca630-7551-11e7-ae79-a7a7db556d37",
+    "_type": "visualization",
+    "_source": {
+      "title": "Leads by source",
+      "visState": "{\"title\":\"Leads by source\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Number\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"leadSource.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Lead Source\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Leads\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"Lead\"},\"query\":{\"match\":{\"tags\":{\"query\":\"Lead\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "209b8a20-754f-11e7-ae79-a7a7db556d37",
+    "_type": "visualization",
+    "_source": {
+      "title": "Leads by Status",
+      "visState": "{\"title\":\"Leads by Status\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Number\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"status.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Status\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"tags:Lead\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "e867f490-6095-11e7-be5b-35d73e4701be",
+    "_type": "visualization",
+    "_source": {
+      "title": "Job Details",
+      "visState": "{\"title\":\"Job Details\",\"type\":\"table\",\"params\":{\"perPage\":16,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Ignore this\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"clientCorporation.name.keyword\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Company\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"title.keyword\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Job Title\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"employmentType.keyword\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Contract Type\"}},{\"id\":\"5\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"numOpenings\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"# of Positions\"}},{\"id\":\"9\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"webResponses.total\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Web Responses\"}},{\"id\":\"6\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"submissions.total\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Submissions\"}},{\"id\":\"7\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"sendouts.total\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Client Submissions\"}},{\"id\":\"8\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"interviews.total\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Interviews\"}},{\"id\":\"10\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"placements.total\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Placements\"}},{\"id\":\"13\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"address.address1.keyword\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Address\"}},{\"id\":\"14\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"address.zip.keyword\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Zip Code\"}},{\"id\":\"11\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"address.city.keyword\",\"include\":\"\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"City\"}},{\"id\":\"12\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"address.state.keyword\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"State\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Job Orders\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"JobOrder\"},\"query\":{\"match\":{\"tags\":{\"query\":\"JobOrder\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "db837ab0-6095-11e7-be5b-35d73e4701be",
+    "_type": "visualization",
+    "_source": {
+      "title": "Owner Selector",
+      "visState": "{\"title\":\"Owner Selector\",\"type\":\"table\",\"params\":{\"perPage\":5,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"owner.firstName.keyword\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Owner's First Name\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"owner.lastName.keyword\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Last Name\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Job Orders\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"JobOrder\"},\"query\":{\"match\":{\"tags\":{\"query\":\"JobOrder\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "c90f4590-609e-11e7-b495-f96ae1f78cdc",
+    "_type": "visualization",
+    "_source": {
+      "title": "Disclaimer",
+      "visState": "{\"title\":\"Disclaimer\",\"type\":\"markdown\",\"params\":{\"markdown\":\"# LOOP\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "e6738a80-5935-11e7-9ae5-b7aa13f10cd5",
+    "_type": "visualization",
+    "_source": {
+      "title": "Top Companies Recruiting",
+      "visState": "{\"title\":\"Top Companies Recruiting\",\"type\":\"tagcloud\",\"params\":{\"scale\":\"linear\",\"orientation\":\"single\",\"minFontSize\":18,\"maxFontSize\":72},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"numOpenings\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"clientCorporation.name.keyword\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Top companies Recruiting\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Job Orders\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"JobOrder\"},\"query\":{\"match\":{\"tags\":{\"query\":\"JobOrder\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "9f848190-609e-11e7-b495-f96ae1f78cdc",
+    "_type": "visualization",
+    "_source": {
+      "title": "Pie Top Companies",
+      "visState": "{\"title\":\"Pie Top Companies\",\"type\":\"pie\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"clientCorporation.name.keyword\",\"size\":999999999,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Top companies hiring\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Job Orders\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"JobOrder\"},\"query\":{\"match\":{\"tags\":{\"query\":\"JobOrder\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "833a2250-7553-11e7-ae79-a7a7db556d37",
+    "_type": "visualization",
+    "_source": {
+      "title": "Opportunities at a glance",
+      "visState": "{\"title\":\"Opportunities at a glance\",\"type\":\"pie\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Total Count\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"status.keyword\",\"include\":\"\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"negate\":false,\"disabled\":false,\"alias\":\"Opportunity\",\"type\":\"phrase\",\"key\":\"tags\",\"value\":\"Opportunity\"},\"query\":{\"match\":{\"tags\":{\"query\":\"Opportunity\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "f81090a0-7553-11e7-ae79-a7a7db556d37",
+    "_type": "visualization",
+    "_source": {
+      "title": "Opportunities by status",
+      "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"Number\"},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Status\",\"field\":\"status.keyword\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":15},\"schema\":\"bucket\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Deal Value\",\"field\":\"dealValue\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"4\",\"params\":{\"customLabel\":\"Weighted Deal Value\",\"field\":\"weightedDealValue\"},\"schema\":\"metric\",\"type\":\"sum\"}],\"listeners\":{},\"params\":{\"perPage\":10,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"title\":\"Opportunities by status\",\"type\":\"table\"}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":\"Opportunities\",\"disabled\":false,\"index\":\"logstash-*\",\"key\":\"tags\",\"negate\":false,\"type\":\"phrase\",\"value\":\"Opportunity\"},\"query\":{\"match\":{\"tags\":{\"query\":\"Opportunity\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "20971320-86af-11e7-af0d-e916f5714c5a",
+    "_type": "visualization",
+    "_source": {
+      "title": "Opportunities, datagrid",
+      "visState": "{\"title\":\"Opportunities, datagrid\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Total Opportunities\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"clientCorporation.name.keyword\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Company Name\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"title.keyword\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Position Name\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"match_all\":{}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":\"Opportunity\",\"disabled\":false,\"index\":\"logstash-*\",\"key\":\"tags\",\"negate\":false,\"type\":\"phrase\",\"value\":\"Opportunity\"},\"query\":{\"match\":{\"tags\":{\"query\":\"Opportunity\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  }
+]
