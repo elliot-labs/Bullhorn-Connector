@@ -43,6 +43,7 @@ class Authentication:
     def __init__(self, debug=False):
         """Sets the default settings for the authentication class"""
 
+        # Set the initial values for the Authentication class
         self.debug = debug
         self.credentials = {
             'client_id': '***REMOVED***',
@@ -50,6 +51,7 @@ class Authentication:
             'username': '***REMOVED***',
             'password': '***REMOVED***'}
 
+        # If debugging is enabled then print debug values
         if self.debug:
             print(self.credentials)
 
@@ -66,14 +68,17 @@ class Authentication:
             'password': self.credentials["password"],
             'action': 'Login'}
 
+        # Pulls apart the auth code request to get the aut code itself
         auth_code_request = requests.get(authcode_url, params=authcode_data)
         code = re.search('(?<=code=)[0-9%a-zA-Z-]+', auth_code_request.url)
 
+        # If debugging is enabled then print debug values
         if self.debug:
             print(authcode_url)
             print(authcode_data)
             print(auth_code_request.url)
 
+        # If no code is found then return Boolean false, otherwise return the authcode.
         if code is None:
             return False
         else:
@@ -155,12 +160,18 @@ class Authentication:
         The 'restUrl' index returns the URL to access the restAPI.
         """
 
+        # Checks for the token_data.json and rest_access.json cache files.
+        # If both of the files are present then read them into memory and
+        # set the respective variables to reflect the presence of the files.
+        # if either of the files are missing or contain errors, update the respective vars.
         if os.path.isfile("token_data.json") and os.path.isfile("rest_access.json"):
 
+            # Read the rest_access.json file into a var
             rest_data_file = open("rest_access.json", 'r')
             rest_cache = json.loads(rest_data_file.read())
             rest_data_file.close()
 
+            # Read the token_data.json file into a var
             token_data_file = open("token_data.json", 'r')
             token_cache = json.loads(token_data_file.read())
             token_data_file.close()
