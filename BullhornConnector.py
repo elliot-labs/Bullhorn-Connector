@@ -40,6 +40,8 @@ def cli_args():
 class Authentication:
     """Provides the authentication strings needed for queries."""
 
+    # init function to be executed when the class is instantiated so that
+    # various variables are not missing at method call time.
     def __init__(self, debug=False):
         """Sets the default settings for the authentication class"""
 
@@ -51,7 +53,7 @@ class Authentication:
             'username': '***REMOVED***',
             'password': '***REMOVED***'}
 
-        # If debugging is enabled then print debug values
+        # If debugging is enabled then print debug values.
         if self.debug:
             print(self.credentials)
 
@@ -72,7 +74,7 @@ class Authentication:
         auth_code_request = requests.get(authcode_url, params=authcode_data)
         code = re.search('(?<=code=)[0-9%a-zA-Z-]+', auth_code_request.url)
 
-        # If debugging is enabled then print debug values
+        # If debugging is enabled then print debug values.
         if self.debug:
             print(authcode_url)
             print(authcode_data)
@@ -81,8 +83,8 @@ class Authentication:
         # If no code is found then return Boolean false, otherwise return the authcode.
         if code is None:
             return False
-        else:
-            return unquote(code.group(0))
+
+        return unquote(code.group(0))
 
     def get_token_data(self):
         """Returns the value of the auth token.
@@ -92,7 +94,7 @@ class Authentication:
         need_cache_update = False
 
         # Checks for the existence of the cache file.
-        # If file does not exit then it sets teh settings to have one created.
+        # If file does not exit then it sets the settings to have one created.
         if os.path.isfile("token_data.json"):
             token_data_file = open("token_data.json", 'r')
             token_cache = json.loads(token_data_file.read())
@@ -150,12 +152,12 @@ class Authentication:
         # If the access token is not present then returns False.
         if "access_token" in token:
             return token["access_token"]
-        else:
-            return False
+
+        return False
 
     def get_rest_access(self):
         """
-        Returns the URL and token used to connect ot the rest api as a dictionary.
+        Returns the URL and token used to connect to the rest api as a dictionary.
         The 'BhRestToken' index returns the rest API token.
         The 'restUrl' index returns the URL to access the restAPI.
         """
@@ -176,6 +178,9 @@ class Authentication:
             token_cache = json.loads(token_data_file.read())
             token_data_file.close()
 
+            # If there is an error in the rest cache, set the cache update variable to reflect that
+            # a cache rebuild is needed. Otherwise it checks if the cache has expired and if it has
+            # it would also mark that the cache needs a rebuild.
             if "error" in token_cache or "error" in rest_cache:
                 need_cache_update = True
             else:
@@ -198,6 +203,7 @@ class Authentication:
             rest_data_file.write(rest_access_response.text)
             rest_data_file.close()
 
+        # If debugging is enabled then print debug values.
         if self.debug:
             if need_cache_update:
                 print(rest_auth_url)
@@ -206,42 +212,57 @@ class Authentication:
                 print(rest_access)
                 print("Created REST Cache from scratch.")
 
+        # Returns the Rest Cache. In dictionary form. Either directly from the request or from the
+        # cache file.
         if not need_cache_update:
             return rest_cache
-        else:
-            return rest_access
+
+        return rest_access
 
 class DataAccess:
     """Returns the requested data."""
 
+    # init function to be executed when the class is instantiated so that
+    # various variables are not missing at method call time.
     def __init__(self, debug=False, meta=False):
         """Sets the required variables for all methods."""
 
+        # Set the initial values for the Data access class.
         self.authenticated_rest = Authentication(debug)
         self.debug = debug
         self.rest_access = self.authenticated_rest.get_rest_access()
         self.meta_flag = meta
 
     def get_command(self, urlpath, command_options=None):
-        """A method that allows for dynamic get commands.\n
-        URL path is the argument that should be executed,\n
-        E.G. restURL/entity/Department?params\n
-        where entity/Department is the urlpath.\n
+        """A method that allows for dynamic get commands.
+        URL path is the argument that should be executed,
+        E.G. restURL/entity/Department?params
+        where entity/Department is the urlpath.
         Command_options takes a dictionary"""
 
+        # If there are not arguments passed to the REST get command then
+        # it will create the command_ options variable as a blank dictionary.
         if command_options is None:
             command_options = {}
 
+        # Builds the authentication and parameters into the url so that it
+        # when it is executed it will be able to log in and perform the requested
+        # operations.
         get_command_params = {'BhRestToken': self.rest_access['BhRestToken']}
         get_command_params.update(command_options)
 
+        # Execute the get command on the URL. Grabs the dynamic access URL from the REST Access
+        # method's dictionary. Adds the URL path for the get command and then tacks on the
+        # parameters/authentication created above.
         result = requests.get(self.rest_access['restUrl'] + urlpath, params=get_command_params)
 
+        # If debugging is enabled then print debug values
         if self.debug:
             print(command_options)
             print(get_command_params)
             print(result.url)
 
+        # Returns the results of the get command in text format.
         return result.text
 
     def api_search(self, entity='JobOrder', fields='*'):
@@ -268,6 +289,11 @@ class DataAccess:
         results = original_search_request_parsed
         loop_end = original_search_request_parsed["total"] - original_search_request_parsed["count"]
 
+        # Executes a loop that will run as long as the start value, which is incremented by the
+        # count value each loop execution, in the returned initial data grab to process at one
+        # time does not hit the total value. One each loop the return of the get command is appended
+        # to the results dictionary. The loop stops when the start position of the query is higher
+        # than the total amount of items that are available.
         while search_params["start"] < loop_end:
             search_params["start"] = search_params["start"] \
             + original_search_request_parsed["count"]
@@ -275,27 +301,35 @@ class DataAccess:
                 self.rest_access['restUrl'] + 'search/' + entity, params=search_params).text)
             results["data"] = results["data"] + looped_search_request["data"]
 
+        # If debugging is enabled then print debug values.
+        # If debugging is off then it will minify the printed dictionary.
         if self.debug:
             jsonindent = 3
             print(search_params)
             print(search_request.url)
             print(original_search_request_parsed["count"])
             print(original_search_request_parsed["total"])
-            #print(search_request_parsed["data"])
         else:
             jsonindent = None
 
+        # Removes the start and count items in the results dictionary to declutter the results.
         results.pop("start")
         results.pop("count")
 
+        # If the metadata flag is enabled then directly return the results.
+        # Otherwise, return only the data section.
         if self.meta_flag:
             return json.dumps(results, indent=jsonindent)
-        else:
-            return json.dumps(results["data"], indent=jsonindent)
 
+        return json.dumps(results["data"], indent=jsonindent)
+
+# Run the program if the program is being executed on the CLI.
+# Otherwise suppress execution so that script can act as a library in other projects.
 if __name__ == '__main__':
+    # Grab the command line arguments.
     COMMAND_LINE_ARGUMENTS = cli_args()
+    # Instantiate the Data Access class with the various arguments passed to the program.
     PRINTME = DataAccess(COMMAND_LINE_ARGUMENTS.debug, COMMAND_LINE_ARGUMENTS.meta)
-    #fields='owner,clientCorporation,isOpen,title,submissions[0]'
+    # Run an API search and print the results to the CLI.
     print(PRINTME.api_search(entity=COMMAND_LINE_ARGUMENTS.entity,
                              fields=COMMAND_LINE_ARGUMENTS.fields))
